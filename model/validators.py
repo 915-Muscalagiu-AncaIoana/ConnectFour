@@ -15,6 +15,6 @@ class InputValidator:
 
 class MoveValidator:
     @staticmethod
-    def validate_human_move(column,board):
-        if board.get_available_move_on_column(column) < 0 :
+    def validate_move(column,board):
+        if board.get_available_move_on_column(column).x < 0 :
             raise MoveError('This move is not possible because the column is full of pieces')
