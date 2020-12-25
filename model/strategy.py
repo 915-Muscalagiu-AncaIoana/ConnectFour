@@ -10,7 +10,7 @@ class StrategyAI:
         best_score = float("-inf")
 
         alpha = float("-inf")
-        beta = float("-inf")
+        beta = float("inf")
 
         if player == 2:
             opponent = 1
@@ -32,12 +32,13 @@ class StrategyAI:
         for column in range(board.width):
             position = board.get_available_move_on_column(column)
             if position != -1:
-                board.apply_move_on_board(column)
+                new_board = copy.deepcopy(board)
+                new_board.apply_move_on_board(position.x,position.y,opponent)
                 valid_moves.append(column)
 
-        #todo UTILITY VALUE
+
         if depth == 0 or len(valid_moves) == 0 or board.game_won() is not None:
-            return
+            return board.evaluate_state_of_board(player)
 
         valid_moves = board.get_valid_moves_for_ai()
         beta = b
@@ -46,7 +47,7 @@ class StrategyAI:
             board_score = float("inf")
             if a < beta:
                 ai_board = copy.deepcopy(board)
-                ai_board.move_on_board(move, opponent)
+                ai_board.move_on_board(move, player)
                 board_score = self.maximize_alpha(ai_board, depth - 1, a, beta, player, opponent)
 
             if board_score < beta:
@@ -58,12 +59,13 @@ class StrategyAI:
         for column in range(board.width):
             position = board.get_available_move_on_column(column)
             if position != -1:
-                board.apply_move_on_board(column)
+                new_board = copy.deepcopy(board)
+                new_board.apply_move_on_board(position.x,position.y,player)
                 valid_moves.append(column)
 
-        # todo UTILITY VALUE
+
         if depth == 0 or len(valid_moves) == 0 or board.game_won() is not None:
-            return
+            return board.evaluate_state_of_board(player)
 
         alpha = a
 
@@ -72,7 +74,7 @@ class StrategyAI:
             if alpha < a:
                 ai_board = copy.deepcopy(board)
                 ai_board.move_on_board(move, opponent)
-                board_score = self.maximize_alpha(ai_board, depth - 1, alpha, b, player, opponent)
+                board_score = self.minimize_beta(ai_board, depth - 1, alpha, b, player, opponent)
 
             if board_score > alpha:
                 alpha = board_score
