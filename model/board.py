@@ -26,7 +26,7 @@ class Board:
         self._height = height
         self._width = width
         self.create_board()
-        # self.create_available_moves()
+
 
     def create_board(self):
         """
@@ -38,10 +38,6 @@ class Board:
             for column in range(self._width):
                 self._board[row].append(0)
 
-    # def create_available_moves(self):
-    #     self._available_moves = []
-    #     for column in range(0, self._width):
-    #         self._available_moves.append(Position(self._height - 1, column))
 
     @property
     def width(self):
@@ -117,78 +113,6 @@ class Board:
                 if value == 0:
                     return False
         return True
-
-    # def check_vertical_pieces(self, position, length):
-    #     row = position.x
-    #     column = position.y
-    #     value = self.get_certain_value(row, column)
-    #     count = 0
-    #
-    #     for row_index in range(row, self._height):
-    #         if self._board[row_index][column] == value:
-    #             count += 1
-    #         else:
-    #             break
-    #
-    #     if count >= length:
-    #         return 1
-    #     else:
-    #         return 0
-    #
-    # def check_horizontal_pieces(self, position, length):
-    #     row = position.x
-    #     column = position.y
-    #     value = self.get_certain_value(row, column)
-    #     count = 0
-    #
-    #     for col_index in range(column, self._width):
-    #         if self._board[row][col_index] == value:
-    #             count += 1
-    #         else:
-    #             break
-    #
-    #     if count >= length:
-    #         return 1
-    #     else:
-    #         return 0
-    #
-    # def check_positive_diagonal_pieces(self, position, length):
-    #     row = position.x
-    #     column = position.y
-    #     value = self.get_certain_value(row, column)
-    #     count = 0
-    #     col_index = column
-    #     for row_index in range(row, self._height):
-    #         if col_index >= self._width:
-    #             break
-    #         elif self._board[row_index][col_index] == value:
-    #             count += 1
-    #         else:
-    #             break
-    #         col_index += 1
-    #     if count >= length:
-    #         return 1
-    #     else:
-    #         return 0
-    #
-    # def check_negative_diagonal_pieces(self, position, length):
-    #     row = position.x
-    #     column = position.y
-    #     value = self.get_certain_value(row, column)
-    #     count = 0
-    #     col_index = column
-    #     for row_index in range(row, -1, -1):
-    #         if col_index >= self._width:
-    #             break
-    #         elif self._board[row_index][col_index] == value:
-    #             count += 1
-    #         else:
-    #             break
-    #         col_index += 1
-    #     if count >= length:
-    #         return 1
-    #     else:
-    #         return 0
 
     def game_won(self):
         """
@@ -315,36 +239,3 @@ class Board:
             table.add_row(self._board[row])
         return table
 
-    # def count_sequence(self, player, length):
-    #     total_count = 0
-    #
-    #     for row in range(self._height):
-    #         for column in range(self._width):
-    #             if self._board[row][column] == player:
-    #                 position = Position(row, column)
-    #                 total_count += self.check_vertical_pieces(position, length)
-    #                 total_count += self.check_horizontal_pieces(position, length)
-    #                 total_count += (self.check_positive_diagonal_pieces(position,
-    #                                                                     length) + self.check_negative_diagonal_pieces(
-    #                     position, length))
-    #     return total_count
-
-    # def evaluate_state_of_board(self, player):
-    #     if player == 1:
-    #         opponent = 2
-    #     else:
-    #         opponent = 1
-    #     player_fours = self.count_sequence(player, 4)
-    #     player_threes = self.count_sequence(player, 3)
-    #     player_twos = self.count_sequence(player, 2)
-    #     player_score = player_fours * 99999 + player_threes * 999 + player_twos * 99
-    #
-    #     opponent_fours = self.count_sequence(opponent, 4)
-    #     opponent_threes = self.count_sequence(opponent, 3)
-    #     opponent_twos = self.count_sequence(opponent, 2)
-    #     opponent_score = opponent_fours * 99999 + opponent_threes * 999 + opponent_twos * 99
-    #
-    #     if opponent_fours > 0:
-    #         return float('-inf')
-    #     else:
-    #         return player_score - opponent_score
