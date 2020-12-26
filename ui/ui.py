@@ -30,6 +30,7 @@ class Ui:
             except MoveError as me:
                 print(str(me))
 
+        self.ui_print_board()
         if self._game.get_winner() == 1 :
             print('YOU WON!')
         elif self._game.get_winner() == 2 :
