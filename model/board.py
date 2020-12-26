@@ -266,7 +266,7 @@ class Board:
             score+= 2
 
         if window.count(opponent) == 3 and window.count(0) == 1:
-            score -= 100
+            score -=40000000
 
         return score
 
