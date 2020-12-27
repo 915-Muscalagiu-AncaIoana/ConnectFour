@@ -24,15 +24,29 @@ class StrategyAI:
                  score - heuristic score of a player at a certain point after making certain moves
         """
         valid_moves = board.get_valid_moves()
+
+        # if the computer has one after one move then he must definitely make that move
+        if depth == 3 and board.game_won() == player:
+            return (None, 3000000000000000000000)
+
+        # if depth == 2 and board.game_won() == player-1:
+        #     return (None,-30000000000000000)
+
+        if depth == 1 and board.game_won() == player:
+            return (None, 30000000000)
+
+        # if depth == 0 and board.game_won() == player-1:
+        #     return (None, -300000)
+
         is_terminal = self.is_terminal_node(board)
         if depth == 0 or is_terminal:
             if is_terminal:
                 # the game gets won by the computer in the future moves
-                if board.game_won() == player:
-                    return (None, 10000000)
+                # if board.game_won() == player:
+                #     return (None, 10000000)
                 # the game gets won by the human in the future moves
-                elif board.game_won() == player - 1:
-                    return (None, -40000000)
+                if board.game_won() == player - 1:
+                    return (None, float("-inf"))
                 # the game stops because there are no more possible moves on the board (it is full)
                 else:
                     return (None, 0)
@@ -41,12 +55,7 @@ class StrategyAI:
                 # by calculating the score of the participant at that point in the game considering his pieces on the board
                 return (None, board.score_position(player))
 
-        # if the computer has one after one move then he must definitely make that move
-        if depth == 2 and board.game_won() == player:
-            return (None, float("inf"))
 
-        if depth == 1 and board.game_won() == player:
-            return (None,100000000)
 
         # ALPHA BETA PRUNING FOR OPTIMIZATION
 

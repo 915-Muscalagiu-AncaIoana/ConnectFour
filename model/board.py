@@ -3,7 +3,7 @@ from texttable import Texttable
 
 class Position:
     """
-
+        This class is used for identifying the position of a cell on the board
     """
     def __init__(self, coord_x, coord_y):
         self._x = coord_x
@@ -20,7 +20,7 @@ class Position:
 
 class Board:
     """
-        This is the class for the entity Board, which has a specific size ( a height and a width)
+        This is the class for the entity Board, which has a specific size ( a height and a width).
     """
     def __init__(self, height, width):
         self._height = height
@@ -183,14 +183,14 @@ class Board:
             opponent = 1
 
         if window.count(player) == 4:
-            score+= 1000
+            score+= 30000000
         elif window.count(player) == 3 and window.count(0) == 1 :
-            score+= 5
+            score+= 150
         elif window.count(player) == 2 and window.count(0) == 2 :
-            score+= 2
+            score+= 60
 
         if window.count(opponent) == 3 and window.count(0) == 1:
-            score -=40000000
+            score -= 3000000000000000
 
         return score
 
@@ -204,7 +204,7 @@ class Board:
         score = 0
         center_array = [self._board[i][self._width//2] for i in range(self._height)]
         center_count = center_array.count(player)
-
+        score += center_count * 2
         for row in range(self._height):
             row_array = self._board[row]
             for column in range(self._width-3):

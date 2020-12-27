@@ -67,13 +67,13 @@ class GUI:
                         if turn == 0:
                             column = int(math.floor(event.pos[0] / self._square_size))
                             self._game.human_move(column)
-                            if self._game.get_winner() != None:
+                            if self._game.check_game_over() == True:
                                 break
                             turn = 1
                 if turn == 1:
                     pygame.time.wait(500)
                     self._game.computer_move()
-                    if self._game.get_winner() != None:
+                    if self._game.check_game_over() == True:
                         break
                     turn = 0
             except MoveError as me:

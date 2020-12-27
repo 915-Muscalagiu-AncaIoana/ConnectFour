@@ -27,5 +27,5 @@ class MoveValidator:
         :param board: the board the move is about to be made on
         :raises MoveError if the column is full of pieces, meaning that the move is not possible
         """
-        if board.get_available_move_on_column(column).x < 0 :
+        if board.get_available_move_on_column(column) == -1 :
             raise MoveError('This move is not possible because the column is full of pieces')

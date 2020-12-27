@@ -56,6 +56,7 @@ class Computer(Player):
             The move made for the computer is chosen depending on its strategy to find the best possible move
         :param board: the board the computer makes a move on
         """
-        computer = 2
-        best_move = self._strategy.minimax(board, 3, float("-inf"), float("inf"), True, computer)[0]
+        computer = self._value
+        args = (board, 4, float("-inf"), float("inf"), True, computer)
+        best_move = self._strategy.minimax(*args)[0]
         board.move_on_board(best_move, computer)
