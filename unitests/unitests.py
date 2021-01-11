@@ -86,13 +86,13 @@ class Strategy(unittest.TestCase):
         board1.move_on_board(1, 1)
         board1.move_on_board(1, 1)
         board1.move_on_board(4, 2)
-        best_move = self._strategy.minimax(board1, 4, float("-inf"), float("inf"), True, 2)[0]
+        best_move = self._strategy.minimax(board1, 4, float("-inf"), float("inf"), True, 2,1)[0]
         self.assertEqual(best_move, 5)
         board2.move_on_board(1, 1)
         board2.move_on_board(1, 1)
         board2.move_on_board(0, 2)
         board2.move_on_board(0, 2)
-        best_move = self._strategy.minimax(board2, 4, float("-inf"), float("inf"), True, 2)[0]
+        best_move = self._strategy.minimax(board2, 4, float("-inf"), float("inf"), True, 2,1)[0]
         self.assertEqual(best_move, 0)
         board3 = Board(6, 7)
         value = 1
@@ -105,7 +105,7 @@ class Strategy(unittest.TestCase):
             board3.move_on_board(col, (col+1) % 2 + 1)
             board3.move_on_board(col, (col + 1) % 2 + 1)
             board3.move_on_board(col, (col+1) % 2 + 1)
-        best_move = self._strategy.minimax(board3, 4, float("-inf"), float("inf"), True, 2)[0]
+        best_move = self._strategy.minimax(board3, 4, float("-inf"), float("inf"), True, 2,1)[0]
         self.assertEqual(best_move, None)
 
 

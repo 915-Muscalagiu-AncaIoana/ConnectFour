@@ -46,14 +46,14 @@ class Game:
 
     def computer_move(self):
         """
-            This function makes a move for the Computer player and then checks if the game is over after the move
+            This function makes a move for the Computer computer and then checks if the game is over after the move
         """
         self._computer.computer_move(self._board)
         self.check_game_over()
 
     def human_move(self, column):
         """
-            This function validates amd makes a move for the Human player according to the input of the user
+            This function validates amd makes a move for the Human computer according to the input of the user
         and then checks if the game is over after the move
         :param column: the column that the user wants to drop a piece on
         """

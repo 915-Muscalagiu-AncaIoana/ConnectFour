@@ -19,9 +19,10 @@ class GUI:
         self._game = game
         self._validator = validator
 
-    def draw_board(self):
+    def display_game_board(self):
         for column in range(self._column_count):
             for row in range(self._row_count):
+                # piece = pygame.image.load("piece.png")
                 pygame.draw.rect(self._screen, self._background_color, (
                     column * self._square_size, (row + 1) * self._square_size, self._square_size, self._square_size))
                 if self._game.get_cell_of_board(row, column) == 0:
@@ -45,7 +46,7 @@ class GUI:
         while self._game.get_winner() == None:
             try:
                 for event in pygame.event.get() :
-                    self.draw_board()
+                    self.display_game_board()
                     pygame.display.update()
                     if event.type == pygame.QUIT:
                         sys.exit()
@@ -79,17 +80,17 @@ class GUI:
             except MoveError as me:
                 continue
 
-        self.draw_board()
+        self.display_game_board()
         pygame.display.update()
 
         if self._game.get_winner() == 1:
             label = self._font.render('YOU WON!', True, self._human_colour)
-            self._screen.blit(label,(60,10))
+            self._screen.blit(label,(150,10))
         elif self._game.get_winner() == 2:
             label = self._font.render('YOU LOST!', True, self._computer_colour)
-            self._screen.blit(label, (40, 10))
+            self._screen.blit(label, (150, 10))
         else:
             label = self._font.render('THE GAME IS DRAW!', True, self._human_colour)
-            self._screen.blit(label, (40, 10))
+            self._screen.blit(label, (150, 10))
         pygame.display.update()
         pygame.time.wait(3000)

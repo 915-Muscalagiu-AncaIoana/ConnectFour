@@ -46,10 +46,10 @@ class Board:
     def apply_move_on_board(self, row, column, value):
         """
             This function applies a move on the board by assigning the cell of the matrix
-        the value of the player which made the move
+        the value of the computer which made the move
         :param row: the row of the board where the move will be made
         :param column: the column of the board where the move will be made
-        :param value: the value of the player that makes the move
+        :param value: the value of the computer that makes the move
         """
         self._board[row][column] = value
         # self._available_moves[column].decrement_x()
@@ -58,7 +58,7 @@ class Board:
         """
             This function searches for the row available on a certain column and places a piece on that position
         :param column: the column of the board where the move will be made
-        :param value: the value of the player that makes the move
+        :param value: the value of the computer that makes the move
         """
         position = self.get_available_move_on_column(column)
         self.apply_move_on_board(position.x, position.y, value)
@@ -132,10 +132,10 @@ class Board:
 
     def winning_move(self, player):
         """
-            This function checks if a player has won by verifying all the possible combinations of 4 pieces within the table
-        to see if the player's value appears 4 times consecutively
-        :param player: the value the player plays with on the table
-        :return True - if the player has won
+            This function checks if a computer has won by verifying all the possible combinations of 4 pieces within the table
+        to see if the computer's value appears 4 times consecutively
+        :param player: the value the computer plays with on the table
+        :return True - if the computer has won
                 None - otherwise
         """
         for column in range(self._width-3):
@@ -165,16 +165,16 @@ class Board:
     def evaluate_window(self, window,player):
         """
             This function checks a window (an array) of 4 cells in the board to count
-        the number of pieces of a certain player are in that window. Afterwards it computes the score of the player
+        the number of pieces of a certain computer are in that window. Afterwards it computes the score of the computer
         by the number of the pieces he has in that window.
-        - 4 pieces -> the player has won -> +100
-        - 3 pieces + empty cell -> the player is close to winning -> + 5
-        - 2 pieces + empty cell -> the player has a slight chance to win in the next rounds -> +2
+        - 4 pieces -> the computer has won -> +100
+        - 3 pieces + empty cell -> the computer is close to winning -> + 5
+        - 2 pieces + empty cell -> the computer has a slight chance to win in the next rounds -> +2
             The function checks to see if the opponent has 3 pieces of its own in that window, meaning
-        that the player must place a piece in the remaining cell to prevent the opponent from winning
+        that the computer must place a piece in the remaining cell to prevent the opponent from winning
         :param window: an array of 4 cells in the board
-        :param player: the value assigned to the player
-        :return: score - the score of the player given by this window in the board
+        :param player: the value assigned to the computer
+        :return: score - the score of the computer given by this window in the board
         """
         score = 0
         if player == 1:
@@ -196,10 +196,10 @@ class Board:
 
     def score_position(self,player):
         """
-            This function calculates the score of a player at a certain moment in the game, by evaluating every possible
+            This function calculates the score of a computer at a certain moment in the game, by evaluating every possible
         window of 4 vertical/horizontal/diagonal adjacent cells
-        :param player: the player whose score is about to be computed
-        :return: score - the total score of the player at a certain moment in the game
+        :param player: the computer whose score is about to be computed
+        :return: score - the total score of the computer at a certain moment in the game
         """
         score = 0
         center_array = [self._board[i][self._width//2] for i in range(self._height)]

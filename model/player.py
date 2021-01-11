@@ -1,7 +1,7 @@
 class Player:
     """
     Player - Base class for entities Computer and Human
-    value - the value associated with each player
+    value - the value associated with each computer
             1 - the human
             2 - the computer
     """
@@ -11,9 +11,9 @@ class Player:
 
     def player_move(self, board, row, column):
         """
-          This function makes a move of a player on the board by marking the cell in the matrix of the
-        board with the player's specific value
-        :param board: the board the player makes a move on
+          This function makes a move of a computer on the board by marking the cell in the matrix of the
+        board with the computer's specific value
+        :param board: the board the computer makes a move on
         :param row: the row of the board where the move will be made
         :param column: the column of the board where the move will be made
         """
@@ -22,7 +22,7 @@ class Player:
 
 class Human(Player):
     """
-    Human - A class derived from the entity player, represents the entity Human in the Game
+    Human - A class derived from the entity computer, represents the entity Human in the Game
     """
 
     def __init__(self, value):
@@ -41,8 +41,8 @@ class Human(Player):
 
 class Computer(Player):
     """
-    Computer - A class derived from the entity player, represents the entity Computer in the Game
-    The Computer has one more attribute comparing to the general player: its strategy of playing the game
+    Computer - A class derived from the entity computer, represents the entity Computer in the Game
+    The Computer has one more attribute comparing to the general computer: its strategy of playing the game
     """
 
     def __init__(self, value, strategy):
@@ -57,6 +57,6 @@ class Computer(Player):
         :param board: the board the computer makes a move on
         """
         computer = self._value
-        args = (board, 4, float("-inf"), float("inf"), True, computer)
+        args = (board, 4, float("-inf"), float("inf"), True, computer,computer-1)
         best_move = self._strategy.minimax(*args)[0]
         board.move_on_board(best_move, computer)
